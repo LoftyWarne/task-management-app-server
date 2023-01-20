@@ -19,8 +19,9 @@ exports.findAll = (req, res) => {
 
 //Create and save a new list
 exports.create = (req, res) => {
+    console.log(req.body.tbl_ListName)
     // Validate request
-    if (!req.body.listname) {
+    if (!req.body.tbl_ListName) {
       res.status(400).send({
         message: "Content cannot be empty!"
       });
@@ -29,8 +30,7 @@ exports.create = (req, res) => {
   
     // Create a list
     const listObj = {
-      tbl_ListName: req.body.listname,
-      tbl_Description: req.body.description
+      tbl_ListName: req.body.tbl_ListName,
     };
   
     // Save list in the database
