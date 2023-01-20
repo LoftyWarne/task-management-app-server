@@ -33,7 +33,7 @@ exports.findAllIncomplete = (req, res) => {
 };
 
 // Retrieve all tasks from the database for a specific list
-exports.findAllIncomplete = (req, res) => {
+exports.findAllOnList = (req, res) => {
   const id = req.params.id;
 
   task.findAll({ where: { tbl_FK_List: id } })
@@ -49,7 +49,7 @@ exports.findAllIncomplete = (req, res) => {
 };
 
 // Retrieve all incomplete tasks from the database for a specific list
-exports.findAllIncomplete = (req, res) => {
+exports.findAllIncompleteOnList = (req, res) => {
   const id = req.params.id;
 
   task.findAll({ where: { tbl_FK_List: id, tbl_TaskComplete: false } })

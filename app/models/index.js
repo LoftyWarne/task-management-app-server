@@ -30,7 +30,4 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.assemblies = require("./list.model.js")(sequelize, Sequelize);
-db.assemblies = require("./list.task.js")(sequelize, Sequelize);
-
 module.exports = db;
