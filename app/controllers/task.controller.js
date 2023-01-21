@@ -67,7 +67,7 @@ exports.findAllIncompleteOnList = (req, res) => {
 //Create and save a new task
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.taskname) {
+    if (!req.body.tbl_TaskName) {
       res.status(400).send({
         message: "Content cannot be empty!"
       });
@@ -76,8 +76,10 @@ exports.create = (req, res) => {
   
     // Create a task
     const taskObj = {
-      tbl_TaskName: req.body.taskname,
-      tbl_Description: req.body.description
+      tbl_TaskName: req.body.tbl_TaskName,
+      tbl_TaskDescription: req.body.tbl_TaskDescription,
+      tbl_TaskDeadline: req.body.tbl_TaskDeadline,
+      tbl_FK_List: req.body.tbl_FK_Task,
     };
   
     // Save task in the database

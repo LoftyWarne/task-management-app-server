@@ -19,7 +19,6 @@ exports.findAll = (req, res) => {
 
 //Create and save a new list
 exports.create = (req, res) => {
-    console.log(req.body.tbl_ListName)
     // Validate request
     if (!req.body.tbl_ListName) {
       res.status(400).send({

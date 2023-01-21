@@ -14,6 +14,9 @@ module.exports = app => {
 
     // Retrieve all incomplete tasks for a specific list
     router.get("/incomplete/:id", task.findAllIncompleteOnList);
+
+    // Create a new task
+    router.post("/add", task.create);
   
     // Update a task with id
     router.put("/update/:id", task.update);
