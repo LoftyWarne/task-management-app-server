@@ -79,7 +79,7 @@ exports.create = (req, res) => {
       tbl_TaskName: req.body.tbl_TaskName,
       tbl_TaskDescription: req.body.tbl_TaskDescription,
       tbl_TaskDeadline: req.body.tbl_TaskDeadline,
-      tbl_FK_List: req.body.tbl_FK_Task,
+      tbl_FK_List: req.body.tbl_FK_List,
     };
   
     // Save task in the database
