@@ -121,7 +121,7 @@ exports.create = (req, res) => {
       });
   };  
 
-  //Update the list of task with id
+  //Update the list of task with the specified id
   exports.updateTaskList = (req, res) => {
     const id = req.params.id;
   
@@ -137,6 +137,38 @@ exports.create = (req, res) => {
           res.send({
             message: "task was updated successfully."
           });
+        } else {
+          res.send({
+            message: `Cannot update task with tbl_PK_Task=${id}. Maybe task was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating task with tbl_PK_Task=" + id
+        });
+      });
+  };  
+
+  //Update the status of task with the specified id
+  exports.updateTaskStatus = (req, res) => {
+    const id = req.params.id;
+  
+    task.update(
+      {
+        tbl_TaskComplete: req.body.tbl_TaskComplete
+      }, 
+      {
+      where: { tbl_PK_Task: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "task was updated successfully."
+          });
+        if(req.body.tbl_TaskComplete){
+          console.log(`Email: task ${req.body.tbl_TaskName} was completed`)
+        }          
         } else {
           res.send({
             message: `Cannot update task with tbl_PK_Task=${id}. Maybe task was not found or req.body is empty!`
@@ -175,6 +207,7 @@ exports.delete = (req, res) => {
       });
   };
 
+  //Delete all tasks from a specified list
   exports.deleteAll = (req, res) => {
     const id = req.params.id;
 

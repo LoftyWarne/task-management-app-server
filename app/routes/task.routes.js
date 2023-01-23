@@ -24,6 +24,9 @@ module.exports = app => {
     // Update the list of task with id
     router.put("/updateTaskList/:id", task.updateTaskList);
 
+    // Update the completion status of task with id
+    router.put("/updateTaskStatus/:id", task.updateTaskStatus);
+
     // Delete a task with id
     router.delete("/delete/:id", task.delete);
 
