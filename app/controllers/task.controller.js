@@ -189,7 +189,7 @@ exports.create = (req, res) => {
           res.send({
             message: "task was updated successfully."
           });
-        if(req.body.tbl_TaskComplete){
+        if(req.body.tbl_TaskComplete === "true"){
           console.log(`Email: task ${req.body.tbl_TaskName} was completed`)
         }          
         } else {
