@@ -121,6 +121,35 @@ exports.create = (req, res) => {
       });
   };  
 
+  //Update the list of task with id
+  exports.updateTaskList = (req, res) => {
+    const id = req.params.id;
+  
+    task.update(
+      {
+        tbl_FK_List: req.body.tbl_PK_List
+      }, 
+      {
+      where: { tbl_PK_Task: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: "task was updated successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot update task with tbl_PK_Task=${id}. Maybe task was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating task with tbl_PK_Task=" + id
+        });
+      });
+  };  
+
 //Delete a task with the specified id
 exports.delete = (req, res) => {
     const id = req.params.id;

@@ -21,11 +21,14 @@ module.exports = app => {
     // Update a task with id
     router.put("/update/:id", task.update);
 
+    // Update the list of task with id
+    router.put("/updateTaskList/:id", task.updateTaskList);
+
     // Delete a task with id
     router.delete("/delete/:id", task.delete);
 
     // Delete all tasks in a specific list
-    router.delete("/deleteall/:id", task.delete);
+    router.delete("/deleteall/:id", task.deleteAll);
   
     app.use('/api/task', router);
   };
