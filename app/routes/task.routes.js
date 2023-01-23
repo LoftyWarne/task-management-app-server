@@ -10,10 +10,13 @@ module.exports = app => {
     router.get("/incomplete", task.findAllIncomplete);
 
     // Retrieve all tasks for a specific list
-    router.get("/:id", task.findAllOnList);
+    router.get("/findallonlist/:id", task.findAllOnList);
 
     // Retrieve all incomplete tasks for a specific list
     router.get("/incomplete/:id", task.findAllIncompleteOnList);
+
+    // Retrieve all overdue tasks
+    router.get("/overdue", task.findAllOverdue);
 
     // Create a new task
     router.post("/add", task.create);

@@ -20,7 +20,7 @@ exports.findAll = (req, res) => {
 // Retrieve all incomplete tasks from the database.
 exports.findAllIncomplete = (req, res) => {
 
-  task.findAll({ where: { tbl_TaskComplete: false } })
+  task.findAll({ where: { tbl_TaskComplete: false }})
     .then(data => {
       res.send(data);
     })
@@ -60,6 +60,29 @@ exports.findAllIncompleteOnList = (req, res) => {
       res.status(500).send({
         message:
           err.message || `Some error occurred while retrieving all tasks with tbl_FK_List=${id}.`
+      });
+    });
+};
+
+// Retrieve all overdue tasks from the database.
+exports.findAllOverdue = (req, res) => {
+
+  const nowDate = new Date().setHours(0, 0, 0, 0);
+
+  task.findAll({ where: { 
+                  tbl_TaskComplete: false,
+                  tbl_TaskDeadline: {
+                    [Op.lt]: nowDate
+                  }  
+                } 
+              })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving all overdue tasks."
       });
     });
 };
