@@ -204,13 +204,6 @@ To run this project, you will need to add the following environment variables to
 `DB_NAME` - database name\
 `DB_DRIVER` - database type\
 `API_ADDRESS` - address of API used for retrieving overdue tasks
-## Running Tests
-
-To run tests, use the following command:
-
-```bash
-  npm run test
-```
 
 
 ## Authors
