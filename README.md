@@ -10,6 +10,13 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 - Logging to the console every time a user completes a task
 - Logging to the console at 9am every day all the overdue tasks
 
+Future Features:
+- Authentication
+- Use an API Gateway for routing
+- Move each route handler and cron jobs into separate Lambda functions
+- Create a test environment database and add tests
+- More detailed API documentation
+
 ## API Reference
 
 #### Retrieve all lists
@@ -23,6 +30,9 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 ```http
   POST /api/list/add
 ```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `tbl_ListName`(body)      | `string` | **Required**. Name of list |
 
 #### Rename List
 
@@ -33,6 +43,7 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of list to rename |
+| `tbl_ListName`(body)      | `string` | **Required**. New name of list |
 
 #### Rename List
 
@@ -89,6 +100,13 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
   POST /api/task/add
 ```
 
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `tbl_taskName`(body)      | `string` | **Required**. Name of new task |
+| `tbl_TaskDescription`(body)      | `string` | **Required**. Description of new task |
+| `tbl_TaskDeadline`(body)      | `date` | **Required**. Deadline for new task |
+| `tbl_FK_List`(body)      | `integer` | **Required**. Foreign key of list of new task |
+
 #### Update a task with the specified id
 
 ```http
@@ -98,6 +116,10 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of task to update |
+| `tbl_taskName`(body)      | `string` | **Required**. Name of updated task |
+| `tbl_TaskDescription`(body)      | `string` | **Required**. Description of updated task |
+| `tbl_TaskDeadline`(body)      | `date` | **Required**. Deadline for updated task |
+| `tbl_FK_List`(body)      | `integer` | **Required**. Foreign key of list of updated task |
 
 #### Move a task with the specified id to different list
 
@@ -107,7 +129,8 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of task to move 
+| `id`      | `string` | **Required**. Id of task to move  |
+| `tbl_FK_List`(body)      | `integer` | **Required**. Foreign key of new list to move task to |
 
 #### Update the completion status of task with specified id
 
@@ -117,7 +140,8 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of task to update 
+| `id`      | `string` | **Required**. Id of task to update |
+| `tbl_TaskComplete`(body)      | `boolean` | **Required**. New task completion status |
 
 #### Delete task with specified id
 
@@ -138,10 +162,6 @@ This is the repository for the back-end Node.js/Express.js server of a simple ta
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of list to delete all tasks from 
-
-
-
-
 
 ## Run Locally
 
